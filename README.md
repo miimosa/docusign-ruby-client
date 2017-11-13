@@ -40,14 +40,14 @@ To initialize the client and make the Login API Call using the JWT authenticatio
 	user_id = '[REQUIRED]'
 	expires_in_seconds = 3600 #1 hour
 	auth_server = 'account-d.docusign.com'
-	private_key_filename = '[REQUIRED]'
+	private_key_or_filename = '[REQUIRED]'
 
 	# STEP 1: Initialize API Client
 	configuration = DocuSign_eSign::Configuration.new
 	configuration.host = host
 
 	api_client = DocuSign_eSign::ApiClient.new(configuration)
-	api_client.configure_jwt_authorization_flow(private_key_filename, auth_server, integrator_key, user_id, expires_in_seconds)
+	api_client.configure_jwt_authorization_flow(private_key_or_filename, auth_server, integrator_key, user_id, expires_in_seconds)
 
 	# STEP 2: Initialize Authentication API using the API Client
 	authentication_api = DocuSign_eSign::AuthenticationApi.new(api_client)
@@ -84,7 +84,7 @@ Unit tests are available in the [tests/spec](./tests/spec) folder.
 
 Follow the steps below to run the test cases
 
-* Fill in all the required fields/values
+* Create a __.env__ file with required ENV vars in [tests](./tests) folder (see [.env-example file](./tests/.env-example))
 * Run the following command from the [tests/spec](./tests/spec) folder 
 
         bundle exec rspec <spec_filename>
