@@ -11,9 +11,9 @@ describe 'DocuSign Ruby Client Tests' do
 			if $api_client.nil?
 				configuration = DocuSign_eSign::Configuration.new
 		  	configuration.host = $host
-
+		  	
 		  	$api_client = DocuSign_eSign::ApiClient.new(configuration)
-		    $api_client.configure_jwt_authorization_flow($private_key_filename, $auth_server, $integrator_key, $user_id, $expires_in_seconds)
+		  	$api_client.configure_jwt_authorization_flow($private_key_or_filename, $auth_server, $integrator_key, $user_id, $expires_in_seconds)
 		  end
 
 	  	authentication_api = DocuSign_eSign::AuthenticationApi.new($api_client)
@@ -110,11 +110,11 @@ describe 'DocuSign Ruby Client Tests' do
     # run before each test
     $host = "https://demo.docusign.net/restapi"
 
-  	$integrator_key = ENV['INTEGRATOR_KEY']
+    $integrator_key = ENV['INTEGRATOR_KEY']
   	$user_id = ENV['USER_ID']
   	$expires_in_seconds = ENV['EXPIRES_IN_SECONDS'].to_i || 3600 #3600 - 1 hour
   	$auth_server = ENV['AUTH_SERVER'] || 'account-d.docusign.com'
-  	$private_key_filename = ENV['PRIVATE_KEY_FILENAME']
+  	$private_key_or_filename = ENV['PRIVATE_KEY_OR_FILENAME']
 
     $recipient_email = ENV['RECIPIENT_EMAIL']
     $recipient_name = ENV['RECIPIENT_NAME']
